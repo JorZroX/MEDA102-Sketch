@@ -1,0 +1,95 @@
+void setup() {
+  size(970, 970);
+  rectMode(CENTER);///uses the centre of the rectangle as a reference point. Useful for offsetting and the math involved with making TRIANGLE_1/2 match the square.
+  ///SQUARE VARIABLES
+  int hori = 25; ////sets offset on the horizontal axis when drawing the reference/first rectangle 
+  int vert = 25;///sets offset on the vertical axis when drawing the reference/first rectangle
+  int r = 255;///the value of RED when choosing colours for SQUARE
+  int s = 0;///the value of BLUE when choosing colours for SQUARE
+  ///TRIANGLE VARIABLES
+  int q = 255;///the value of RED when choosing colours for TRIANGLE_1
+  int t = 0;///the value of BLUE when choosing colours for the TRIANGLE_1
+  int z = 255;///the value of RED when choosing colours for TRIANGLE_2
+  int v = 0;///the value of BLUE when choosing colours for TRIANGLE_2
+  //////The following are a seriesn of random numbers between 1-8. They are used to call a random element from the stringlist.
+  int x3 = int(random(8));
+  int x1 = int(random(8));
+  int x2 = int(random(8));
+  int x4 = int(random(8));
+  int x5 = int(random(8));
+  int x6 = int(random(8));
+  int x7 = int(random(8));
+  int x8 = int(random(8));
+  int x9 = int(random(8));
+  int x10 = int(random(8));
+  int x11 = int(random(8));
+  int x12 = int(random(8));
+  background(50, 255);////Sets the background colour
+  StringList list;///defines "list" as a stringList
+  list = new StringList();///Creates a new stringlist called "list"
+  ///The following attaches the word in brackets to the end of the "list"
+  list.append("bars");
+  list.append("censored");
+  list.append("Not Approved");
+  list.append("Incorrect");
+  list.append("False");
+  list.append("No");
+  list.append("Invalid");
+  list.append("Negative");
+  ///////////////////////////////////////////
+  textSize(random(32, 64)); //sets the text to be anywhere from 32 to 64.
+  fill(200);////Sets the fill colour of the text coming up.
+  ////the following draws the text element chosen randomly by the x? variable at a random location on the sketch.
+  text(list.get(x1), random(970), random(970));
+  text(list.get(x2), random(970), random(970));
+  text(list.get(x3), random(970), random(970));
+  text(list.get(x4), random(970), random(970));
+  text(list.get(x5), random(970), random(970));
+  text(list.get(x6), random(970), random(970));
+  text(list.get(x7), random(970), random(970));
+  text(list.get(x8), random(970), random(970));
+  text(list.get(x9), random(970), random(970));
+  text(list.get(x10), random(970), random(970));
+  text(list.get(x11), random(970), random(970));
+  text(list.get(x12), random(970), random(970));
+  /////////////////////////////////////SQUARE///////////////////////////////////////
+    for (int p = 25; p < height; p = p + 51){ /////A loop of how many rectangles to draw on the verticle axis while also offsetting the creation of the next rectangle through the use of p.
+      for (int i = 25; i < width; i = i + 51){ /////Same thing but on the horizontal axis.
+        r = r - 1; ////incrementing the colour red to be less as the loop progresses, this gives the gradient effect.
+        s = s + 1; //// same thing but increasing blue.
+        noFill();///sets the square to have no fill so you can see the other triangles through it.
+        stroke(r, 0, s); ////Sets stroke colour.
+        strokeWeight(5);///sets the thickness of the squares edges.
+        rect(hori, vert, 50, 50); ///draws the reference rectangle.
+        rect(i, p, 50 , 50); ///These are the looping rectangles.
+    }
+  }
+  stroke(255, 0 , 0);//Sets colour of below rectangle to red.
+  rect(25, 25, 50 ,50);//Draws the reference rectangle again since it appears in blue for some reason.
+      ///////////////////////////TRIANGLE_1/////////////////////////////////////////////
+      strokeWeight(3);///sets a new stroke weight for the triangles to create the iron bar illusion.
+      for(int y= 0; y<=height; y+=51) {///this is the looping mechanism used to create the first triangle, it is almost identicle to the one used for the SQUARE above.
+        for(int x= 0; x<=width; x+=51) {
+          noFill();///sets the triangles to have no fill so you can see the overlapping second triangle through it.
+          stroke(q,0, t);///sets the colour to new variables since (for reasons I can't explain) the old variables stay maximum blue no matter what. 
+          ///increments both the red and blue up and down respectively, just like the square.
+          q = q - 1;
+          t = t + 1;
+          triangle(x,y+50,x+25,y,x+50,y+50);///Draws TRIANGLE_1
+        }
+      }
+      ///////////////TRIANGLE_2////////////////////////////////////////////////////
+      for(int k= 0; k<=height; k+=51) {///exactly the same method to loop as in TRIANGLE_1.
+        for(int g= 0; g<=width; g+=51) {
+          noFill();//////////sets no fill, while unnecessary, I was experimenting with interweaving the text with this layer of shape. Unsuccessfully. 
+          stroke(z,0,v);////New colour variables since again the old one's seem set on staying at maximum blue despite trying to reset the variables to 0.
+           ///increments both the red and blue up and down respectively, just like the square.
+           z = z -1;
+           v = v +1;
+           triangle(g,k,g + 50,k,g+25,k+50);/////Draws TRIANGLE_2
+    }
+  }
+}
+  
+
+
